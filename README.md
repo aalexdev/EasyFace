@@ -1,4 +1,4 @@
-# EasyFace
+## EasyFace
 
 Aplicação desenvolvida com React Native e Expo, focada em navegação estruturada e controlo de acesso.
 
