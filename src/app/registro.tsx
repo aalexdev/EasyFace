@@ -1,10 +1,15 @@
-import { Link, useRouter } from 'expo-router';
-import React, { useEffect, useRef } from 'react';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
 import logoImg from '../images/logo.jpg';
 
-export default function Home() {
+export default function Registro() {
   const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');
+  const [name, setName] = useState('');
+  const [document, setDocument] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -203,41 +208,116 @@ export default function Home() {
     };
   }, []);
 
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Novo cadastro de ${userType.toUpperCase()}: ${name}`);
+  };
+
   return (
     <div style={styles.container}>
       <canvas ref={canvasRef} style={styles.canvas} />
 
       <main style={styles.content}>
-        <div style={styles.logoWrapper}>
+        <div style={styles.logoWrapper} onClick={() => router.push('/')}>
           <div style={styles.outerRing} />
-          <div style={styles.logoGlow} />
           <img src={logoImg} alt="EasyFace Logo" style={styles.logo} />
         </div>
 
         <h1 style={styles.title}>EASYFACE</h1>
-        <div style={styles.badge}>
-          <span style={styles.badgeDot} />
-          SISTEMA BIOMÉTRICO ATIVO
+        <p style={styles.subtitle}>CADASTRAR NOVO USUÁRIO</p>
+
+        <div style={styles.tabContainer}>
+          <button
+            type="button"
+            style={{ ...styles.tabButton, ...(userType === 'participante' ? styles.tabActive : {}) }}
+            onClick={() => setUserType('participante')}
+          >
+            PARTICIPANTE
+          </button>
+          <button
+            type="button"
+            style={{ ...styles.tabButton, ...(userType === 'fornecedor' ? styles.tabActive : {}) }}
+            onClick={() => setUserType('fornecedor')}
+          >
+            FORNECEDOR
+          </button>
         </div>
 
-        {/* Substitui o botão simples por este bloco com Link */}
-        <Link href="/login" asChild>
+        <form onSubmit={handleRegister} style={styles.form}>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>
+              {userType === 'participante' ? 'NOME COMPLETO' : 'RAZÃO SOCIAL / EMPRESA'}
+            </label>
+            <input
+              type="text"
+              required
+              placeholder={userType === 'participante' ? 'Seu nome completo' : 'Empresa Exemplo Ltda'}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              style={styles.input}
+            />
+          </div>
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>
+              {userType === 'participante' ? 'CPF' : 'CNPJ'}
+            </label>
+            <input
+              type="text"
+              required
+              placeholder={userType === 'participante' ? '000.000.000-00' : '00.000.000/0001-00'}
+              value={document}
+              onChange={(e) => setDocument(e.target.value)}
+              style={styles.input}
+            />
+          </div>
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>E-MAIL</label>
+            <input
+              type="email"
+              required
+              placeholder="seuemail@exemplo.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={styles.input}
+            />
+          </div>
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>SENHA</label>
+            <input
+              type="password"
+              required
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={styles.input}
+            />
+          </div>
+
           <button
+            type="submit"
             style={styles.button}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.boxShadow = '0 0 35px rgba(0, 168, 232, 0.9)';
-              e.currentTarget.style.backgroundColor = '#00B8F8';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 168, 232, 0.4)';
-              e.currentTarget.style.backgroundColor = '#00A8E8';
             }}
           >
-            LOGIN / REGISTRO
+            CADASTRAR COMO {userType.toUpperCase()}
           </button>
-        </Link>
+        </form>
+
+        <div style={styles.footerText}>
+          Já tem uma conta?{' '}
+          <span style={styles.linkText} onClick={() => router.push('/login')}>
+            Faça Login
+          </span>
+        </div>
       </main>
     </div>
   );
@@ -247,13 +327,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: 'relative',
     width: '100vw',
-    height: '100vh',
+    minHeight: '100vh',
     overflow: 'hidden',
     backgroundColor: '#070C18',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+    fontFamily: "'Inter', system-ui, sans-serif",
+    padding: '20px',
   },
   canvas: {
     position: 'absolute',
@@ -269,92 +350,135 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: '48px 40px',
+    padding: '36px 32px',
     borderRadius: '28px',
     backgroundColor: 'rgba(7, 12, 24, 0.75)',
     backdropFilter: 'blur(16px)',
     WebkitBackdropFilter: 'blur(16px)',
     border: '1px solid rgba(0, 168, 232, 0.3)',
     boxShadow: '0 30px 60px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 168, 232, 0.1)',
-    maxWidth: '400px',
-    width: '88%',
+    maxWidth: '410px',
+    width: '100%',
   },
   logoWrapper: {
     position: 'relative',
-    width: '150px',
-    height: '150px',
-    marginBottom: '28px',
+    width: '90px',
+    height: '90px',
+    marginBottom: '16px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    cursor: 'pointer',
   },
   outerRing: {
     position: 'absolute',
-    width: '166px',
-    height: '166px',
+    width: '100px',
+    height: '100px',
     borderRadius: '50%',
     border: '1.5px dashed rgba(0, 168, 232, 0.5)',
   },
-  logoGlow: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    borderRadius: '50%',
-    background: 'radial-gradient(circle, rgba(0,168,232,0.5) 0%, rgba(0,0,0,0) 70%)',
-  },
   logo: {
-    width: '135px',
-    height: '135px',
+    width: '80px',
+    height: '80px',
     borderRadius: '50%',
     objectFit: 'cover',
-    border: '2.5px solid #00A8E8',
-    boxShadow: '0 0 25px rgba(0, 168, 232, 0.6)',
-    position: 'relative',
-    zIndex: 3,
+    border: '2px solid #00A8E8',
+    boxShadow: '0 0 20px rgba(0, 168, 232, 0.6)',
   },
   title: {
-    margin: '0 0 6px 0',
-    fontSize: '2.2rem',
+    margin: '0 0 4px 0',
+    fontSize: '1.8rem',
     fontWeight: 900,
     color: '#FFFFFF',
     letterSpacing: '4px',
     textShadow: '0 0 15px rgba(0, 168, 232, 0.7)',
   },
-  badge: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    margin: '0 0 32px 0',
-    fontSize: '0.7rem',
+  subtitle: {
+    margin: '0 0 20px 0',
+    fontSize: '0.68rem',
     fontWeight: 700,
     color: '#00A8E8',
     letterSpacing: '2px',
-    backgroundColor: 'rgba(0, 168, 232, 0.1)',
-    padding: '6px 14px',
-    borderRadius: '20px',
-    border: '1px solid rgba(0, 168, 232, 0.25)',
   },
-  badgeDot: {
-    width: '6px',
-    height: '6px',
-    borderRadius: '50%',
-    backgroundColor: '#00C853',
-    boxShadow: '0 0 8px #00C853',
+  tabContainer: {
+    display: 'flex',
+    width: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.04)',
+    borderRadius: '12px',
+    padding: '4px',
+    marginBottom: '20px',
+    border: '1px solid rgba(0, 168, 232, 0.2)',
+  },
+  tabButton: {
+    flex: 1,
+    padding: '10px 0',
+    fontSize: '0.72rem',
+    fontWeight: 800,
+    color: '#A0AAB5',
+    backgroundColor: 'transparent',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    letterSpacing: '1px',
+    transition: 'all 0.3s ease',
+  },
+  tabActive: {
+    color: '#FFFFFF',
+    backgroundColor: '#00A8E8',
+    boxShadow: '0 0 15px rgba(0, 168, 232, 0.5)',
+  },
+  form: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  },
+  inputGroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px',
+  },
+  label: {
+    fontSize: '0.65rem',
+    color: '#00A8E8',
+    fontWeight: 800,
+    letterSpacing: '1px',
+  },
+  input: {
+    width: '100%',
+    padding: '10px 14px',
+    fontSize: '0.85rem',
+    color: '#FFFFFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    border: '1px solid rgba(0, 168, 232, 0.3)',
+    borderRadius: '10px',
+    outline: 'none',
+    boxSizing: 'border-box',
   },
   button: {
+    marginTop: '6px',
     width: '100%',
-    padding: '16px 28px',
-    fontSize: '0.95rem',
+    padding: '14px',
+    fontSize: '0.88rem',
     fontWeight: 800,
     color: '#FFFFFF',
     backgroundColor: '#00A8E8',
     border: 'none',
-    borderRadius: '14px',
+    borderRadius: '12px',
     cursor: 'pointer',
-    letterSpacing: '2px',
+    letterSpacing: '1.5px',
     transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
     boxShadow: '0 0 20px rgba(0, 168, 232, 0.4)',
-    outline: 'none',
+  },
+  footerText: {
+    marginTop: '20px',
+    fontSize: '0.78rem',
+    color: '#A0AAB5',
+  },
+  linkText: {
+    color: '#00A8E8',
+    fontWeight: 800,
+    cursor: 'pointer',
+    textDecoration: 'underline',
   },
 };
