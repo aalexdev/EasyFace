@@ -29,3 +29,5 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
    ```bash
    git clone [https://github.com/aalexdev/EasyFace.git](https://github.com/aalexdev/EasyFace.git)
    cd EasyFace
+
+
