@@ -17,7 +17,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 - **Layout Global (`/_layout.tsx`):** Configuração centralizada do Expo Router para navegação entre ecrãs.
 
 ## Como Executar o Projeto
-
+ 
 ### Pré-requisitos
 
 - Node.js instalado no sistema.
