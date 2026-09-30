@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'expo-router';
 import logoImg from '../images/logo.jpg';
-
+ 
 export default function Login() {
   const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
