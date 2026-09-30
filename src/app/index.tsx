@@ -1,11 +1,11 @@
 import { Link, useRouter } from 'expo-router';
-import React, { useEffect, useRef } from 'react'; 
+import React, { useEffect, useRef } from 'react';  
 import logoImg from '../images/logo.jpg';
-
+ 
 export default function Home() {
   const router = useRouter();
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
+  const canvasRef = useRef<HTMLCanvasElement | null>(null); 
+ 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -82,12 +82,12 @@ export default function Home() {
             case 6: currY -= step; break;
             case 7: currX += step; currY -= step; break;
           }
-
+ 
           currX = Math.max(GRID, Math.min(width - GRID, currX));
           currY = Math.max(GRID, Math.min(height - GRID, currY));
           points.push({ x: currX, y: currY });
         }
-
+ 
         const pulseCount = layer === 'fg' ? 2 : 1;
         const pulses: Pulse[] = [];
         for (let p = 0; p < pulseCount; p++) {
@@ -101,7 +101,7 @@ export default function Home() {
             glow: layer === 'fg' ? 12 : layer === 'mid' ? 6 : 0,
           });
         }
-
+ 
         const nodeTypes: ('circle' | 'square' | 'ring')[] = ['circle', 'square', 'ring'];
         circuits.push({
           points, layer, lineWidth,
@@ -109,12 +109,12 @@ export default function Home() {
           pulses,
           nodeType: nodeTypes[Math.floor(Math.random() * nodeTypes.length)],
         });
-      }
+      } 
     };
 
     initCircuits();
     const handleResize = () => initCircuits();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize); 
 
     const render = () => {
       ctx.fillStyle = COLOR_BG;
