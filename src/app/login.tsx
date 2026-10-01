@@ -8,7 +8,7 @@ export default function Login() {
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');
   const [emailOrDoc, setEmailOrDoc] = useState('');
   const [password, setPassword] = useState('');
-
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
