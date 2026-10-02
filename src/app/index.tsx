@@ -4,11 +4,11 @@ import logoImg from '../images/logo.jpg';
  
 export default function Home() {
   const router = useRouter();
-  const canvasRef = useRef<HTMLCanvasElement | null>(null); 
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);  
  
   useEffect(() => {
     const canvas = canvasRef.current; 
-    if (!canvas) return;
+    if (!canvas) return; 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
