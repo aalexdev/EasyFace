@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';  
+import React, { useEffect, useRef, useState } from 'react';   
 import { useRouter } from 'expo-router';  
 import logoImg from '../images/logo.jpg';  
   
@@ -6,10 +6,10 @@ export default function Login() {
   const router = useRouter();  
   const canvasRef = useRef<HTMLCanvasElement | null>(null);  
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante'); 
-  const [emailOrDoc, setEmailOrDoc] = useState('');  
+  const [emailOrDoc, setEmailOrDoc] = useState('');   
   const [password, setPassword] = useState(''); 
     
-  useEffect(() => {
+  useEffect(() => { 
     const canvas = canvasRef.current;
     if (!canvas) return; 
     const ctx = canvas.getContext('2d');
@@ -17,16 +17,16 @@ export default function Login() {
    
     let animationFrameId: number;   
     let width = window.innerWidth;
-    let height = window.innerHeight;
+    let height = window.innerHeight; 
 
     const setupCanvas = () => { 
       const dpr = window.devicePixelRatio || 1;  
       width = window.innerWidth; 
-      height = window.innerHeight;
+      height = window.innerHeight; 
       canvas.width = width * dpr; 
       canvas.height = height * dpr;  
       canvas.style.width = `${width}px`; 
-      canvas.style.height = `${height}px`; 
+      canvas.style.height = `${height}px`;  
       ctx.scale(dpr, dpr); 
     }; 
 
