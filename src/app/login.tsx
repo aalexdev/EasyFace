@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';  
 import { useRouter } from 'expo-router';  
 import logoImg from '../images/logo.jpg';  
- 
+  
 export default function Login() { 
   const router = useRouter();  
   const canvasRef = useRef<HTMLCanvasElement | null>(null);  
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante'); 
-  const [emailOrDoc, setEmailOrDoc] = useState(''); 
+  const [emailOrDoc, setEmailOrDoc] = useState('');  
   const [password, setPassword] = useState(''); 
     
   useEffect(() => {
@@ -15,19 +15,19 @@ export default function Login() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return; 
    
-    let animationFrameId: number;  
+    let animationFrameId: number;   
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const setupCanvas = () => { 
-      const dpr = window.devicePixelRatio || 1; 
+      const dpr = window.devicePixelRatio || 1;  
       width = window.innerWidth; 
       height = window.innerHeight;
       canvas.width = width * dpr; 
       canvas.height = height * dpr;  
-      canvas.style.width = `${width}px`;
+      canvas.style.width = `${width}px`; 
       canvas.style.height = `${height}px`; 
-      ctx.scale(dpr, dpr);
+      ctx.scale(dpr, dpr); 
     }; 
 
     interface Point { x: number; y: number; }
