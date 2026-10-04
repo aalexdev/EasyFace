@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import logoImg from '../images/logo.jpg';
  
 export default function Login() { 
-  const router = useRouter();
+  const router = useRouter(); 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');
   const [emailOrDoc, setEmailOrDoc] = useState('');
@@ -14,14 +14,14 @@ export default function Login() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
+ 
     let animationFrameId: number;
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const setupCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
-      width = window.innerWidth;
+      width = window.innerWidth; 
       height = window.innerHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
