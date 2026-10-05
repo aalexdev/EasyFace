@@ -7,23 +7,23 @@ export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);  
  
   useEffect(() => {
-    const canvas = canvasRef.current; 
+    const canvas = canvasRef.current;  
     if (!canvas) return; 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number; 
+    let animationFrameId: number;  
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const setupCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
-      width = window.innerWidth;
+      width = window.innerWidth; 
       height = window.innerHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
+      canvas.style.height = `${height}px`; 
       ctx.scale(dpr, dpr);
     };
 
@@ -43,7 +43,7 @@ export default function Home() {
 
     const COLOR_BG = '#070C18';
     const CYAN_GLOW = '#00A8E8';
-    const GREEN_NEON = '#00C853';
+    const GREEN_NEON = '#00C853'; 
     const BLUE_ELECTRIC = '#4CC9FE';
 
     const initCircuits = () => {
@@ -54,7 +54,7 @@ export default function Home() {
       const rows = Math.ceil(height / GRID);
       const totalCircuits = Math.floor((cols * rows) / 4);
 
-      for (let i = 0; i < totalCircuits; i++) {
+      for (let i = 0; i < totalCircuits; i++) { 
         const randLayer = Math.random();
         let layer: 'bg' | 'mid' | 'fg' = 'mid';
         let lineWidth = 1.5;
@@ -74,7 +74,7 @@ export default function Home() {
 
           switch (dir) {
             case 0: currX += step; break;
-            case 1: currX += step; currY += step; break;
+            case 1: currX += step; currY += step; break; 
             case 2: currY += step; break;
             case 3: currX -= step; currY += step; break;
             case 4: currX -= step; break;
