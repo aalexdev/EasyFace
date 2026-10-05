@@ -1,31 +1,31 @@
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react'; 
+import React, { useEffect, useRef, useState } from 'react';  
 import logoImg from '../images/logo.jpg'; 
 
 export default function Registro() {
   const router = useRouter();
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null); 
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');
   const [name, setName] = useState('');
   const [document, setDocument] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
-
+ 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!ctx) return; 
 
     let animationFrameId: number;
     let width = window.innerWidth;
     let height = window.innerHeight; 
 
     const setupCanvas = () => {
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = window.devicePixelRatio || 1; 
       width = window.innerWidth; 
       height = window.innerHeight;
-      canvas.width = width * dpr;
+      canvas.width = width * dpr; 
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
