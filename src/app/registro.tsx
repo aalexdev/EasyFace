@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';  
+import React, { useEffect, useRef, useState } from 'react';   
 import logoImg from '../images/logo.jpg'; 
 
 export default function Registro() {
@@ -7,7 +7,7 @@ export default function Registro() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null); 
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');
   const [name, setName] = useState('');
-  const [document, setDocument] = useState('');
+  const [document, setDocument] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
  
@@ -16,19 +16,19 @@ export default function Registro() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return; 
-
+ 
     let animationFrameId: number;
     let width = window.innerWidth;
     let height = window.innerHeight; 
 
     const setupCanvas = () => {
       const dpr = window.devicePixelRatio || 1; 
-      width = window.innerWidth; 
+      width = window.innerWidth;  
       height = window.innerHeight;
       canvas.width = width * dpr; 
-      canvas.height = height * dpr;
+      canvas.height = height * dpr; 
       canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
+      canvas.style.height = `${height}px`; 
       ctx.scale(dpr, dpr);
     };
 
