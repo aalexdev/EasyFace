@@ -1,28 +1,28 @@
 import { Link, useRouter } from 'expo-router'; 
-import React, { useEffect, useRef } from 'react';   
+import React, { useEffect, useRef } from 'react';    
 import logoImg from '../images/logo.jpg';
   
 export default function Home() {
-  const router = useRouter();
+  const router = useRouter(); 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);   
  
-  useEffect(() => {
+  useEffect(() => { 
     const canvas = canvasRef.current;  
     if (!canvas) return; 
     const ctx = canvas.getContext('2d'); 
     if (!ctx) return;
-
-    let animationFrameId: number;  
+ 
+    let animationFrameId: number;   
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const setupCanvas = () => {
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = window.devicePixelRatio || 1; 
       width = window.innerWidth; 
       height = window.innerHeight;  
       canvas.width = width * dpr; 
       canvas.height = height * dpr;
-      canvas.style.width = `${width}px`; 
+      canvas.style.width = `${width}px`;  
       canvas.style.height = `${height}px`; 
       ctx.scale(dpr, dpr);
     }; 
@@ -44,14 +44,14 @@ export default function Home() {
     const COLOR_BG = '#070C18';
     const CYAN_GLOW = '#00A8E8';
     const GREEN_NEON = '#00C853'; 
-    const BLUE_ELECTRIC = '#4CC9FE';
+    const BLUE_ELECTRIC = '#4CC9FE'; 
 
     const initCircuits = () => {
       setupCanvas();
       circuits = [];
       const GRID = 35;
       const cols = Math.ceil(width / GRID);
-      const rows = Math.ceil(height / GRID);
+      const rows = Math.ceil(height / GRID); 
       const totalCircuits = Math.floor((cols * rows) / 4);
 
       for (let i = 0; i < totalCircuits; i++) { 
@@ -63,7 +63,7 @@ export default function Home() {
         else if (randLayer < 0.4) { layer = 'bg'; lineWidth = 1.0; }
 
         let currX = Math.floor(Math.random() * cols) * GRID;
-        let currY = Math.floor(Math.random() * rows) * GRID;
+        let currY = Math.floor(Math.random() * rows) * GRID; 
         const points: Point[] = [{ x: currX, y: currY }];
         const length = 4 + Math.floor(Math.random() * 6);
         let dir = Math.floor(Math.random() * 8);
