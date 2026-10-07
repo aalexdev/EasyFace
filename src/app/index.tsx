@@ -1,4 +1,4 @@
-import { Link, useRouter } from 'expo-router'; 
+import { Link, useRouter } from 'expo-router';  
 import React, { useEffect, useRef } from 'react';         
 import logoImg from '../images/logo.jpg'; 
    
