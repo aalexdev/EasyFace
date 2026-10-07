@@ -72,15 +72,15 @@ export default function Home() {
           if (Math.random() > 0.3) dir = (dir + (Math.random() > 0.5 ? 1 : 7)) % 8;
           const step = GRID * (Math.random() > 0.5 ? 1 : 2);
 
-          switch (dir) {
-            case 0: currX += step; break;
-            case 1: currX += step; currY += step; break; 
-            case 2: currY += step; break;
-            case 3: currX -= step; currY += step; break;
-            case 4: currX -= step; break;
-            case 5: currX -= step; currY -= step; break;
-            case 6: currY -= step; break;
-            case 7: currX += step; currY -= step; break;
+          switch (dir) { 
+            case 0: currX += step; break; 
+            case 1: currX += step; currY += step; break;  
+            case 2: currY += step; break;  
+            case 3: currX -= step; currY += step; break; 
+            case 4: currX -= step; break; 
+            case 5: currX -= step; currY -= step; break; 
+            case 6: currY -= step; break; 
+            case 7: currX += step; currY -= step; break; 
           }
  
           currX = Math.max(GRID, Math.min(width - GRID, currX));
