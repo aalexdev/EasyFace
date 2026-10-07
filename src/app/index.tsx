@@ -46,13 +46,13 @@ export default function Home() {
     const GREEN_NEON = '#00C853'; 
     const BLUE_ELECTRIC = '#4CC9FE'; 
 
-    const initCircuits = () => {
-      setupCanvas();
-      circuits = [];
-      const GRID = 35;
-      const cols = Math.ceil(width / GRID);
-      const rows = Math.ceil(height / GRID); 
-      const totalCircuits = Math.floor((cols * rows) / 4);
+    const initCircuits = () => { 
+      setupCanvas(); 
+      circuits = []; 
+      const GRID = 35; 
+      const cols = Math.ceil(width / GRID); 
+      const rows = Math.ceil(height / GRID);  
+      const totalCircuits = Math.floor((cols * rows) / 4); 
 
       for (let i = 0; i < totalCircuits; i++) { 
         const randLayer = Math.random();
