@@ -41,7 +41,7 @@ export default function Home() {
     let circuits: Circuit[] = [];
     let scanlineY = 0;
 
-    const COLOR_BG = '#070C18';
+    const COLOR_BG = '#070C18';  
     const CYAN_GLOW = '#00A8E8';
     const GREEN_NEON = '#00C853'; 
     const BLUE_ELECTRIC = '#4CC9FE'; 
