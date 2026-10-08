@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';   
 import { useRouter } from 'expo-router';  
-import logoImg from '../images/logo.jpg';   
+import logoImg from '../images/logo.jpg';    
    
 export default function Login() {  
   const router = useRouter();  
@@ -58,7 +58,7 @@ export default function Login() {
       const totalCircuits = Math.floor((cols * rows) / 4);
 
       for (let i = 0; i < totalCircuits; i++) {
-        const randLayer = Math.random();
+        const randLayer = Math.random(); 
         let layer: 'bg' | 'mid' | 'fg' = 'mid';
         let lineWidth = 1.5;
 
@@ -91,7 +91,7 @@ export default function Login() {
           points.push({ x: currX, y: currY }); 
         }
 
-        const pulseCount = layer === 'fg' ? 2 : 1;
+        const pulseCount = layer === 'fg' ? 2 : 1; 
         const pulses: Pulse[] = [];
         for (let p = 0; p < pulseCount; p++) {
           const speedFactor = layer === 'fg' ? 0.008 + Math.random() * 0.015 : 0.002 + Math.random() * 0.004;
