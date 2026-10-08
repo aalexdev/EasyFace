@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';   
-import { useRouter } from 'expo-router';  
+import { useRouter } from 'expo-router';   
 import logoImg from '../images/logo.jpg';    
    
 export default function Login() {  
@@ -10,7 +10,7 @@ export default function Login() {
   const [password, setPassword] = useState(''); 
      
   useEffect(() => { 
-    const canvas = canvasRef.current;
+    const canvas = canvasRef.current; 
     if (!canvas) return; 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;  
@@ -21,14 +21,14 @@ export default function Login() {
 
     const setupCanvas = () => { 
       const dpr = window.devicePixelRatio || 1;    
-      width = window.innerWidth; 
+      width = window.innerWidth;  
       height = window.innerHeight; 
       canvas.width = width * dpr; 
       canvas.height = height * dpr;   
       canvas.style.width = `${width}px`;  
       canvas.style.height = `${height}px`;  
       ctx.scale(dpr, dpr);  
-    }; 
+    };  
 
     interface Point { x: number; y: number; }
     interface Pulse { progress: number; speed: number; length: number; color: string; glow: number; }
