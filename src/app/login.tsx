@@ -53,7 +53,7 @@ export default function Login() {
       setupCanvas();
       circuits = [];
       const GRID = 35;
-      const cols = Math.ceil(width / GRID);
+      const cols = Math.ceil(width / GRID); 
       const rows = Math.ceil(height / GRID);
       const totalCircuits = Math.floor((cols * rows) / 4);
 
@@ -69,12 +69,12 @@ export default function Login() {
         let currY = Math.floor(Math.random() * rows) * GRID;
         const points: Point[] = [{ x: currX, y: currY }];
         const length = 4 + Math.floor(Math.random() * 6);
-        let dir = Math.floor(Math.random() * 8);
+        let dir = Math.floor(Math.random() * 8); 
 
         for (let j = 0; j < length; j++) {
           if (Math.random() > 0.3) dir = (dir + (Math.random() > 0.5 ? 1 : 7)) % 8;
           const step = GRID * (Math.random() > 0.5 ? 1 : 2);
-
+ 
           switch (dir) {
             case 0: currX += step; break;
             case 1: currX += step; currY += step; break;
@@ -82,11 +82,11 @@ export default function Login() {
             case 3: currX -= step; currY += step; break;
             case 4: currX -= step; break;
             case 5: currX -= step; currY -= step; break;
-            case 6: currY -= step; break;
+            case 6: currY -= step; break; 
             case 7: currX += step; currY -= step; break;
-          }
+          } 
 
-          currX = Math.max(GRID, Math.min(width - GRID, currX));
+          currX = Math.max(GRID, Math.min(width - GRID, currX)); 
           currY = Math.max(GRID, Math.min(height - GRID, currY));
           points.push({ x: currX, y: currY }); 
         }
