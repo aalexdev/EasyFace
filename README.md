@@ -3,7 +3,7 @@
 Aplicação desenvolvida com React Native e Expo, focada em navegação estruturada e controlo de acesso.   
      
 ## Tecnologias Utilizadas 
-     
+      
 - React Native 
 - Expo / Expo Router   
 - TypeScript  
@@ -14,16 +14,16 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 - **Página Inicial (`/`):** Apresentação e ponto de entrada do sistema. 
 - **Autenticação (`/login`):** Ecrã para acesso de utilizadores. 
 - **Registo (`/registro`):** Ecrã para criação de novas contas.
-- **Layout Global (`/_layout.tsx`):** Configuração centralizada do Expo Router para navegação entre ecrãs.
+- **Layout Global (`/_layout.tsx`):** Configuração centralizada do Expo Router para navegação entre ecrãs. 
  
 ## Como Executar o Projeto
  
-### Pré-requisitos
+### Pré-requisitos 
 
 - Node.js instalado no sistema. 
 - Aplicação Expo Go instalada no dispositivo móvel (opcional para testes em dispositivo físico).  
 
-### Passos de Instalação
+### Passos de Instalação 
 
 1. **Clonar o repositório:**
    ```bash
