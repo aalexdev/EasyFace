@@ -4,11 +4,11 @@ import logoImg from '../images/logo.jpg';
    
 export default function Login() {  
   const router = useRouter();  
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);  
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);   
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante'); 
   const [emailOrDoc, setEmailOrDoc] = useState('');     
   const [password, setPassword] = useState(''); 
-     
+      
   useEffect(() => { 
     const canvas = canvasRef.current; 
     if (!canvas) return; 
@@ -16,7 +16,7 @@ export default function Login() {
     if (!ctx) return;   
     
     let animationFrameId: number;   
-    let width = window.innerWidth;
+    let width = window.innerWidth; 
     let height = window.innerHeight; 
  
     const setupCanvas = () => { 
@@ -46,7 +46,7 @@ export default function Login() {
 
     const COLOR_BG = '#070C18';
     const CYAN_GLOW = '#00A8E8';  
-    const GREEN_NEON = '#00C853';
+    const GREEN_NEON = '#00C853'; 
     const BLUE_ELECTRIC = '#4CC9FE';
 
     const initCircuits = () => {
@@ -55,7 +55,7 @@ export default function Login() {
       const GRID = 35;
       const cols = Math.ceil(width / GRID); 
       const rows = Math.ceil(height / GRID);
-      const totalCircuits = Math.floor((cols * rows) / 4);
+      const totalCircuits = Math.floor((cols * rows) / 4); 
 
       for (let i = 0; i < totalCircuits; i++) {
         const randLayer = Math.random(); 
