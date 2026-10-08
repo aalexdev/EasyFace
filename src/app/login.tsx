@@ -4,7 +4,7 @@ import logoImg from '../images/logo.jpg';
    
 export default function Login() {  
   const router = useRouter();  
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);   
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);    
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante'); 
   const [emailOrDoc, setEmailOrDoc] = useState('');     
   const [password, setPassword] = useState(''); 
@@ -12,19 +12,19 @@ export default function Login() {
   useEffect(() => { 
     const canvas = canvasRef.current; 
     if (!canvas) return; 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d'); 
     if (!ctx) return;   
     
     let animationFrameId: number;   
     let width = window.innerWidth; 
-    let height = window.innerHeight; 
+    let height = window.innerHeight;  
  
     const setupCanvas = () => { 
       const dpr = window.devicePixelRatio || 1;    
       width = window.innerWidth;  
       height = window.innerHeight;  
       canvas.width = width * dpr; 
-      canvas.height = height * dpr;   
+      canvas.height = height * dpr;    
       canvas.style.width = `${width}px`;   
       canvas.style.height = `${height}px`;  
       ctx.scale(dpr, dpr);  
