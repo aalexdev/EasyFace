@@ -6,7 +6,7 @@ export default function Login() {
   const router = useRouter();  
   const canvasRef = useRef<HTMLCanvasElement | null>(null);    
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante'); 
-  const [emailOrDoc, setEmailOrDoc] = useState('');     
+  const [emailOrDoc, setEmailOrDoc] = useState('');      
   const [password, setPassword] = useState(''); 
       
   useEffect(() => { 
@@ -34,7 +34,7 @@ export default function Login() {
     interface Pulse { progress: number; speed: number; length: number; color: string; glow: number; }
     interface Circuit {
       points: Point[];
-      layer: 'bg' | 'mid' | 'fg';
+      layer: 'bg' | 'mid' | 'fg'; 
       lineWidth: number;
       baseColor: string;
       pulses: Pulse[];
@@ -68,7 +68,7 @@ export default function Login() {
         let currX = Math.floor(Math.random() * cols) * GRID;
         let currY = Math.floor(Math.random() * rows) * GRID;
         const points: Point[] = [{ x: currX, y: currY }];
-        const length = 4 + Math.floor(Math.random() * 6);
+        const length = 4 + Math.floor(Math.random() * 6); 
         let dir = Math.floor(Math.random() * 8); 
 
         for (let j = 0; j < length; j++) {
@@ -76,17 +76,17 @@ export default function Login() {
           const step = GRID * (Math.random() > 0.5 ? 1 : 2);
  
           switch (dir) {
-            case 0: currX += step; break;
+            case 0: currX += step; break; 
             case 1: currX += step; currY += step; break;
             case 2: currY += step; break;
             case 3: currX -= step; currY += step; break;
             case 4: currX -= step; break;
-            case 5: currX -= step; currY -= step; break;
+            case 5: currX -= step; currY -= step; break; 
             case 6: currY -= step; break; 
             case 7: currX += step; currY -= step; break;
           } 
 
-          currX = Math.max(GRID, Math.min(width - GRID, currX)); 
+          currX = Math.max(GRID, Math.min(width - GRID, currX));  
           currY = Math.max(GRID, Math.min(height - GRID, currY));
           points.push({ x: currX, y: currY }); 
         }
