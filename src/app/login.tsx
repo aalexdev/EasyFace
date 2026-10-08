@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';   
 import { useRouter } from 'expo-router';  
-import logoImg from '../images/logo.jpg';  
+import logoImg from '../images/logo.jpg';   
    
 export default function Login() {  
   const router = useRouter();  
@@ -45,7 +45,7 @@ export default function Login() {
     let scanlineY = 0;
 
     const COLOR_BG = '#070C18';
-    const CYAN_GLOW = '#00A8E8';
+    const CYAN_GLOW = '#00A8E8';  
     const GREEN_NEON = '#00C853';
     const BLUE_ELECTRIC = '#4CC9FE';
 
@@ -88,7 +88,7 @@ export default function Login() {
 
           currX = Math.max(GRID, Math.min(width - GRID, currX));
           currY = Math.max(GRID, Math.min(height - GRID, currY));
-          points.push({ x: currX, y: currY });
+          points.push({ x: currX, y: currY }); 
         }
 
         const pulseCount = layer === 'fg' ? 2 : 1;
