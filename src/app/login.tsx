@@ -6,18 +6,18 @@ export default function Login() {
   const router = useRouter();  
   const canvasRef = useRef<HTMLCanvasElement | null>(null);    
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');  
-  const [emailOrDoc, setEmailOrDoc] = useState('');      
+  const [emailOrDoc, setEmailOrDoc] = useState('');       
   const [password, setPassword] = useState(''); 
       
   useEffect(() => { 
     const canvas = canvasRef.current; 
     if (!canvas) return;  
     const ctx = canvas.getContext('2d'); 
-    if (!ctx) return;   
+    if (!ctx) return;    
     
     let animationFrameId: number;   
     let width = window.innerWidth;  
-    let height = window.innerHeight;  
+    let height = window.innerHeight;   
   
     const setupCanvas = () => { 
       const dpr = window.devicePixelRatio || 1;    
@@ -30,7 +30,7 @@ export default function Login() {
       ctx.scale(dpr, dpr);  
     };  
 
-    interface Point { x: number; y: number; }
+    interface Point { x: number; y: number; } 
     interface Pulse { progress: number; speed: number; length: number; color: string; glow: number; }
     interface Circuit {
       points: Point[];
@@ -83,7 +83,7 @@ export default function Login() {
             case 4: currX -= step; break;
             case 5: currX -= step; currY -= step; break; 
             case 6: currY -= step; break; 
-            case 7: currX += step; currY -= step; break;
+            case 7: currX += step; currY -= step; break; 
           } 
 
           currX = Math.max(GRID, Math.min(width - GRID, currX));  
@@ -111,7 +111,7 @@ export default function Login() {
           baseColor: layer === 'fg' ? 'rgba(0, 168, 232, 0.35)' : 'rgba(0, 168, 232, 0.15)',
           pulses,
           nodeType: nodeTypes[Math.floor(Math.random() * nodeTypes.length)],
-        });
+        }); 
       }
     };
 
@@ -146,7 +146,7 @@ export default function Login() {
           const first = circuit.points[0];
           const last = circuit.points[circuit.points.length - 1];
           [first, last].forEach((node) => {
-            ctx.fillStyle = circuit.layer === 'fg' ? CYAN_GLOW : 'rgba(0, 168, 232, 0.4)';
+            ctx.fillStyle = circuit.layer === 'fg' ? CYAN_GLOW : 'rgba(0, 168, 232, 0.4)'; 
             if (circuit.nodeType === 'square') ctx.fillRect(node.x - 2.5, node.y - 2.5, 5, 5);
             else if (circuit.nodeType === 'ring') {
               ctx.beginPath(); ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
