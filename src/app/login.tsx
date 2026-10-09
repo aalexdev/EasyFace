@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';    
-import { useRouter } from 'expo-router';    
+import { useRouter } from 'expo-router';     
 import logoImg from '../images/logo.jpg';     
    
 export default function Login() {  
@@ -16,7 +16,7 @@ export default function Login() {
     if (!ctx) return;   
     
     let animationFrameId: number;   
-    let width = window.innerWidth; 
+    let width = window.innerWidth;  
     let height = window.innerHeight;  
   
     const setupCanvas = () => { 
