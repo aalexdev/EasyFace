@@ -8,7 +8,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 - Expo / Expo Router    
 - TypeScript   
 - Node.js  
-
+ 
 ## Estrutura do Projeto e Rotas
 
 - **Página Inicial (`/`):** Apresentação e ponto de entrada do sistema.  
