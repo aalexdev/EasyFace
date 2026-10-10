@@ -5,7 +5,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 ## Tecnologias Utilizadas 
       
 - React Native 
-- Expo / Expo Router   
+- Expo / Expo Router    
 - TypeScript   
 - Node.js  
 
