@@ -6,7 +6,7 @@ export default function Registro() {
   const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement | null>(null); 
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');  
-  const [name, setName] = useState('');
+  const [name, setName] = useState(''); 
   const [document, setDocument] = useState('');  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
