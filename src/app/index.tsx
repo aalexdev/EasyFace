@@ -68,14 +68,14 @@ export default function Home() {
         const length = 4 + Math.floor(Math.random() * 6);
         let dir = Math.floor(Math.random() * 8);
 
-        for (let j = 0; j < length; j++) {
+        for (let j = 0; j < length; j++) { 
           if (Math.random() > 0.3) dir = (dir + (Math.random() > 0.5 ? 1 : 7)) % 8;
           const step = GRID * (Math.random() > 0.5 ? 1 : 2);
 
-          switch (dir) { 
+          switch (dir) {  
             case 0: currX += step; break; 
             case 1: currX += step; currY += step; break;  
-            case 2: currY += step; break;  
+            case 2: currY += step; break;   
             case 3: currX -= step; currY += step; break; 
             case 4: currX -= step; break; 
             case 5: currX -= step; currY -= step; break; 
