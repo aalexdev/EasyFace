@@ -13,7 +13,7 @@ export default function Registro() {
   
   useEffect(() => {
     const canvas = canvasRef.current; 
-    if (!canvas) return;
+    if (!canvas) return; 
     const ctx = canvas.getContext('2d');
     if (!ctx) return; 
  
