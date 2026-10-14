@@ -12,7 +12,7 @@ export default function Home() {
     const ctx = canvas.getContext('2d'); 
     if (!ctx) return;    
     
-    let animationFrameId: number;    
+    let animationFrameId: number;     
     let width = window.innerWidth;  
     let height = window.innerHeight;
    
