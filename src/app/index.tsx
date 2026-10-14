@@ -1,7 +1,7 @@
 import { Link, useRouter } from 'expo-router';   
 import React, { useEffect, useRef } from 'react';            
 import logoImg from '../images/logo.jpg';  
-    
+     
 export default function Home() {  
   const router = useRouter();   
   const canvasRef = useRef<HTMLCanvasElement | null>(null);    
@@ -10,7 +10,7 @@ export default function Home() {
     const canvas = canvasRef.current;     
     if (!canvas) return; 
     const ctx = canvas.getContext('2d'); 
-    if (!ctx) return;  
+    if (!ctx) return;   
     
     let animationFrameId: number;    
     let width = window.innerWidth;  
@@ -22,7 +22,7 @@ export default function Home() {
       height = window.innerHeight;   
       canvas.width = width * dpr;  
       canvas.height = height * dpr; 
-      canvas.style.width = `${width}px`;     
+      canvas.style.width = `${width}px`;      
       canvas.style.height = `${height}px`; 
       ctx.scale(dpr, dpr); 
     }; 
