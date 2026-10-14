@@ -242,7 +242,7 @@ export default function Home() {
     </div>
   );
 }
-
+ 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: 'relative',
