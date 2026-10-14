@@ -157,14 +157,14 @@ export default function Home() {
             pulse.progress += pulse.speed;
             if (pulse.progress > 1) pulse.progress = 0;
             const totalSegments = circuit.points.length - 1;
-            const trailSteps = 8;
+            const trailSteps = 8; 
             for (let i = trailSteps; i >= 0; i--) {
               const lag = (i / trailSteps) * pulse.length;
               let headProgress = pulse.progress - lag;
               if (headProgress < 0) headProgress += 1;
               const currFloat = headProgress * totalSegments;
               const segIdx = Math.min(Math.floor(currFloat), totalSegments - 1);
-              const segProg = currFloat - segIdx;
+              const segProg = currFloat - segIdx; 
               const p1 = circuit.points[segIdx];
               const p2 = circuit.points[segIdx + 1];
               if (p1 && p2) {
