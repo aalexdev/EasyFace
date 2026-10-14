@@ -168,7 +168,7 @@ export default function Home() {
               const p1 = circuit.points[segIdx];
               const p2 = circuit.points[segIdx + 1];
               if (p1 && p2) {
-                const px = p1.x + (p2.x - p1.x) * segProg;
+                const px = p1.x + (p2.x - p1.x) * segProg; 
                 const py = p1.y + (p2.y - p1.y) * segProg;
                 const alpha = (1 - i / trailSteps) * (circuit.layer === 'fg' ? 1 : 0.6);
                 const radius = (1 - i / trailSteps) * (circuit.layer === 'fg' ? 3.5 : 2) + 0.5;
