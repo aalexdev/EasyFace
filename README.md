@@ -18,7 +18,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
  
 ## Como Executar o Projeto
   
-### Pré-requisitos 
+### Pré-requisitos  
 
 - Node.js instalado no sistema. 
 - Aplicação Expo Go instalada no dispositivo móvel (opcional para testes em dispositivo físico).   
