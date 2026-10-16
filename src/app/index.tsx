@@ -1,360 +1,131 @@
-import { Link, useRouter } from 'expo-router';   
-import React, { useEffect, useRef } from 'react';            
-import logoImg from '../images/logo.jpg';   
-     
-export default function Home() {  
-  const router = useRouter();   
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);    
-     
-  useEffect(() => {  
-    const canvas = canvasRef.current;     
-    if (!canvas) return; 
-    const ctx = canvas.getContext('2d'); 
-    if (!ctx) return;    
-    
-    let animationFrameId: number;     
-    let width = window.innerWidth;  
-    let height = window.innerHeight;
-   
-    const setupCanvas = () => {  
-      const dpr = window.devicePixelRatio || 1;  
-      width = window.innerWidth;  
-      height = window.innerHeight;   
-      canvas.width = width * dpr;   
-      canvas.height = height * dpr; 
-      canvas.style.width = `${width}px`;      
-      canvas.style.height = `${height}px`; 
-      ctx.scale(dpr, dpr); 
-    }; 
+import React from 'react';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import { useRouter } from 'expo-router';
+import { CircuitBackground } from '../components/circuitbackground';
 
-    interface Point { x: number; y: number; } 
-    interface Pulse { progress: number; speed: number; length: number; color: string; glow: number; } 
-    interface Circuit { 
-      points: Point[];
-      layer: 'bg' | 'mid' | 'fg';
-      lineWidth: number;
-      baseColor: string;
-      pulses: Pulse[];
-      nodeType: 'circle' | 'square' | 'ring';
-    }
+const logoImg = require('../images/logo.jpg');
 
-    let circuits: Circuit[] = [];
-    let scanlineY = 0;
-
-    const COLOR_BG = '#070C18';  
-    const CYAN_GLOW = '#00A8E8';
-    const GREEN_NEON = '#00C853'; 
-    const BLUE_ELECTRIC = '#4CC9FE'; 
-
-    const initCircuits = () => { 
-      setupCanvas(); 
-      circuits = []; 
-      const GRID = 35; 
-      const cols = Math.ceil(width / GRID); 
-      const rows = Math.ceil(height / GRID);  
-      const totalCircuits = Math.floor((cols * rows) / 4); 
-
-      for (let i = 0; i < totalCircuits; i++) { 
-        const randLayer = Math.random();
-        let layer: 'bg' | 'mid' | 'fg' = 'mid';
-        let lineWidth = 1.5;
-
-        if (randLayer > 0.8) { layer = 'fg'; lineWidth = 2.2; }
-        else if (randLayer < 0.4) { layer = 'bg'; lineWidth = 1.0; }
-
-        let currX = Math.floor(Math.random() * cols) * GRID;
-        let currY = Math.floor(Math.random() * rows) * GRID; 
-        const points: Point[] = [{ x: currX, y: currY }];
-        const length = 4 + Math.floor(Math.random() * 6);
-        let dir = Math.floor(Math.random() * 8);
-
-        for (let j = 0; j < length; j++) { 
-          if (Math.random() > 0.3) dir = (dir + (Math.random() > 0.5 ? 1 : 7)) % 8;
-          const step = GRID * (Math.random() > 0.5 ? 1 : 2);
-
-          switch (dir) {  
-            case 0: currX += step; break; 
-            case 1: currX += step; currY += step; break;  
-            case 2: currY += step; break;   
-            case 3: currX -= step; currY += step; break; 
-            case 4: currX -= step; break; 
-            case 5: currX -= step; currY -= step; break; 
-            case 6: currY -= step; break; 
-            case 7: currX += step; currY -= step; break; 
-          }
- 
-          currX = Math.max(GRID, Math.min(width - GRID, currX));
-          currY = Math.max(GRID, Math.min(height - GRID, currY));
-          points.push({ x: currX, y: currY });
-        }
- 
-        const pulseCount = layer === 'fg' ? 2 : 1;
-        const pulses: Pulse[] = [];
-        for (let p = 0; p < pulseCount; p++) {
-          const speedFactor = layer === 'fg' ? 0.008 + Math.random() * 0.015 : 0.002 + Math.random() * 0.004;
-          const colorChoice = Math.random();
-          pulses.push({
-            progress: Math.random(),
-            speed: speedFactor,
-            length: 0.1 + Math.random() * 0.2,
-            color: colorChoice > 0.6 ? CYAN_GLOW : colorChoice > 0.3 ? BLUE_ELECTRIC : GREEN_NEON,
-            glow: layer === 'fg' ? 12 : layer === 'mid' ? 6 : 0,
-          });
-        }
- 
-        const nodeTypes: ('circle' | 'square' | 'ring')[] = ['circle', 'square', 'ring'];
-        circuits.push({
-          points, layer, lineWidth,
-          baseColor: layer === 'fg' ? 'rgba(0, 168, 232, 0.35)' : 'rgba(0, 168, 232, 0.15)',
-          pulses,
-          nodeType: nodeTypes[Math.floor(Math.random() * nodeTypes.length)],
-        });
-      } 
-    };
-
-    initCircuits();
-    const handleResize = () => initCircuits();
-    window.addEventListener('resize', handleResize); 
-
-    const render = () => {
-      ctx.fillStyle = COLOR_BG;
-      ctx.fillRect(0, 0, width, height);
-
-      ctx.lineWidth = 0.5;
-      ctx.strokeStyle = 'rgba(0, 168, 232, 0.04)';
-      const stepGrid = 40;
-      ctx.beginPath();
-      for (let x = 0; x < width; x += stepGrid) { ctx.moveTo(x, 0); ctx.lineTo(x, height); }
-      for (let y = 0; y < height; y += stepGrid) { ctx.moveTo(0, y); ctx.lineTo(width, y); }
-      ctx.stroke();
-
-      ['bg', 'mid', 'fg'].forEach((currentLayer) => {
-        const layerCircuits = circuits.filter((c) => c.layer === currentLayer);
-        layerCircuits.forEach((circuit) => {
-          ctx.lineWidth = circuit.lineWidth;
-          ctx.strokeStyle = circuit.baseColor;
-          ctx.beginPath();
-          circuit.points.forEach((pt, index) => {
-            if (index === 0) ctx.moveTo(pt.x, pt.y);
-            else ctx.lineTo(pt.x, pt.y);
-          });
-          ctx.stroke();
-
-          const first = circuit.points[0];
-          const last = circuit.points[circuit.points.length - 1];
-          [first, last].forEach((node) => {
-            ctx.fillStyle = circuit.layer === 'fg' ? CYAN_GLOW : 'rgba(0, 168, 232, 0.4)';
-            if (circuit.nodeType === 'square') ctx.fillRect(node.x - 2.5, node.y - 2.5, 5, 5);
-            else if (circuit.nodeType === 'ring') {
-              ctx.beginPath(); ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-              ctx.strokeStyle = CYAN_GLOW; ctx.lineWidth = 1; ctx.stroke();
-            } else {
-              ctx.beginPath(); ctx.arc(node.x, node.y, 2.5, 0, Math.PI * 2); ctx.fill();
-            }
-          });
-
-          circuit.pulses.forEach((pulse) => {
-            pulse.progress += pulse.speed;
-            if (pulse.progress > 1) pulse.progress = 0;
-            const totalSegments = circuit.points.length - 1;
-            const trailSteps = 8; 
-            for (let i = trailSteps; i >= 0; i--) {
-              const lag = (i / trailSteps) * pulse.length;
-              let headProgress = pulse.progress - lag;
-              if (headProgress < 0) headProgress += 1;
-              const currFloat = headProgress * totalSegments;
-              const segIdx = Math.min(Math.floor(currFloat), totalSegments - 1);
-              const segProg = currFloat - segIdx; 
-              const p1 = circuit.points[segIdx];
-              const p2 = circuit.points[segIdx + 1];
-              if (p1 && p2) {
-                const px = p1.x + (p2.x - p1.x) * segProg; 
-                const py = p1.y + (p2.y - p1.y) * segProg;
-                const alpha = (1 - i / trailSteps) * (circuit.layer === 'fg' ? 1 : 0.6);
-                const radius = (1 - i / trailSteps) * (circuit.layer === 'fg' ? 3.5 : 2) + 0.5;
-
-                ctx.save();
-                if (pulse.glow > 0 && i === 0) { ctx.shadowBlur = pulse.glow; ctx.shadowColor = pulse.color; }
-                ctx.fillStyle = pulse.color; ctx.globalAlpha = alpha;
-                ctx.beginPath(); ctx.arc(px, py, radius, 0, Math.PI * 2); ctx.fill();
-                ctx.restore();
-              }
-            }
-          });
-        });
-      });
-
-      scanlineY += 1.8;
-      if (scanlineY > height) scanlineY = 0;
-      const scanGradient = ctx.createLinearGradient(0, scanlineY - 20, 0, scanlineY + 5);
-      scanGradient.addColorStop(0, 'rgba(0, 168, 232, 0)');
-      scanGradient.addColorStop(0.8, 'rgba(0, 168, 232, 0.08)');
-      scanGradient.addColorStop(1, 'rgba(0, 168, 232, 0.25)');
-      ctx.fillStyle = scanGradient;
-      ctx.fillRect(0, scanlineY - 20, width, 25);
-
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+export default function Home() {
+  const router = useRouter();
 
   return (
-    <div style={styles.container}>
-      <canvas ref={canvasRef} style={styles.canvas} />
+    <View style={styles.container}>
+      <CircuitBackground />
 
-      <main style={styles.content}>
-        <div style={styles.logoWrapper}>
-          <div style={styles.outerRing} />
-          <div style={styles.logoGlow} />
-          <img src={logoImg} alt="EasyFace Logo" style={styles.logo} />
-        </div>
+      <View style={styles.content}>
+        <View style={styles.logoWrapper}>
+          <View style={styles.outerRing} />
+          <Image source={logoImg} style={styles.logo} />
+        </View>
 
-        <h1 style={styles.title}>EASYFACE</h1>
-        <div style={styles.badge}>
-          <span style={styles.badgeDot} />
-          SISTEMA BIOMÉTRICO ATIVO
-        </div>
+        <Text style={styles.title}>EASYFACE</Text>
 
-        {/* Substitui o botão simples por este bloco com Link */}
-        <Link href="/login" asChild>
-          <button
-            style={styles.button}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 0 35px rgba(0, 168, 232, 0.9)';
-              e.currentTarget.style.backgroundColor = '#00B8F8';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 168, 232, 0.4)';
-              e.currentTarget.style.backgroundColor = '#00A8E8';
-            }}
-          >
-            LOGIN / REGISTRO
-          </button>
-        </Link>
-      </main>
-    </div>
+        <View style={styles.badge}>
+          <View style={styles.badgeDot} />
+          <Text style={styles.badgeText}>SISTEMA BIOMÉTRICO ATIVO</Text>
+        </View>
+
+        <Pressable
+          style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
+          onPress={() => router.push('/login')}
+        >
+          <Text style={styles.buttonText}>LOGIN / REGISTO</Text>
+        </Pressable>
+      </View>
+    </View>
   );
 }
- 
-const styles: { [key: string]: React.CSSProperties } = {
+
+const styles = StyleSheet.create({
   container: {
-    position: 'relative',
-    width: '100vw',
-    height: '100vh',
-    overflow: 'hidden',
+    flex: 1,
     backgroundColor: '#070C18',
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-  },
-  canvas: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    zIndex: 1,
   },
   content: {
-    position: 'relative',
     zIndex: 2,
-    display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '48px 40px',
-    borderRadius: '28px',
-    backgroundColor: 'rgba(7, 12, 24, 0.75)',
-    backdropFilter: 'blur(16px)',
-    WebkitBackdropFilter: 'blur(16px)',
-    border: '1px solid rgba(0, 168, 232, 0.3)',
-    boxShadow: '0 30px 60px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 168, 232, 0.1)',
-    maxWidth: '400px',
+    paddingVertical: 48,
+    paddingHorizontal: 32,
+    borderRadius: 28,
+    backgroundColor: 'rgba(7, 12, 24, 0.85)',
+    borderWidth: 1,
+    borderColor: 'rgba(0, 168, 232, 0.3)',
+    maxWidth: 400,
     width: '88%',
   },
   logoWrapper: {
     position: 'relative',
-    width: '150px',
-    height: '150px',
-    marginBottom: '28px',
-    display: 'flex',
+    width: 150,
+    height: 150,
+    marginBottom: 28,
     alignItems: 'center',
     justifyContent: 'center',
   },
   outerRing: {
     position: 'absolute',
-    width: '166px',
-    height: '166px',
-    borderRadius: '50%',
-    border: '1.5px dashed rgba(0, 168, 232, 0.5)',
-  },
-  logoGlow: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    borderRadius: '50%',
-    background: 'radial-gradient(circle, rgba(0,168,232,0.5) 0%, rgba(0,0,0,0) 70%)',
+    width: 166,
+    height: 166,
+    borderRadius: 83,
+    borderWidth: 1.5,
+    borderColor: 'rgba(0, 168, 232, 0.5)',
+    borderStyle: 'dashed',
   },
   logo: {
-    width: '135px',
-    height: '135px',
-    borderRadius: '50%',
-    objectFit: 'cover',
-    border: '2.5px solid #00A8E8',
-    boxShadow: '0 0 25px rgba(0, 168, 232, 0.6)',
-    position: 'relative',
-    zIndex: 3,
+    width: 135,
+    height: 135,
+    borderRadius: 67.5,
+    borderWidth: 2.5,
+    borderColor: '#00A8E8',
   },
   title: {
-    margin: '0 0 6px 0',
-    fontSize: '2.2rem',
-    fontWeight: 900,
+    marginBottom: 6,
+    fontSize: 28,
+    fontWeight: '900',
     color: '#FFFFFF',
-    letterSpacing: '4px',
-    textShadow: '0 0 15px rgba(0, 168, 232, 0.7)',
+    letterSpacing: 4,
   },
   badge: {
-    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: '8px',
-    margin: '0 0 32px 0',
-    fontSize: '0.7rem',
-    fontWeight: 700,
-    color: '#00A8E8',
-    letterSpacing: '2px',
+    gap: 8,
+    marginBottom: 32,
     backgroundColor: 'rgba(0, 168, 232, 0.1)',
-    padding: '6px 14px',
-    borderRadius: '20px',
-    border: '1px solid rgba(0, 168, 232, 0.25)',
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 168, 232, 0.25)',
   },
   badgeDot: {
-    width: '6px',
-    height: '6px',
-    borderRadius: '50%',
+    width: 6,
+    height: 6,
+    borderRadius: 3,
     backgroundColor: '#00C853',
-    boxShadow: '0 0 8px #00C853',
+  },
+  badgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#00A8E8',
+    letterSpacing: 2,
   },
   button: {
     width: '100%',
-    padding: '16px 28px',
-    fontSize: '0.95rem',
-    fontWeight: 800,
-    color: '#FFFFFF',
+    paddingVertical: 16,
     backgroundColor: '#00A8E8',
-    border: 'none',
-    borderRadius: '14px',
-    cursor: 'pointer',
-    letterSpacing: '2px',
-    transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-    boxShadow: '0 0 20px rgba(0, 168, 232, 0.4)',
-    outline: 'none',
+    borderRadius: 14,
+    alignItems: 'center',
   },
-};
+  buttonPressed: {
+    backgroundColor: '#00B8F8',
+    opacity: 0.9,
+  },
+  buttonText: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#FFFFFF',
+    letterSpacing: 2,
+  },
+});
