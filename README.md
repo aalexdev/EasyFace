@@ -9,7 +9,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 - TypeScript    
 - Node.js  
  
-## Estrutura do Projeto e Rotas  
+## Estrutura do Projeto e Rotas   
 
 - **Página Inicial (`/`):** Apresentação e ponto de entrada do sistema.  
 - **Autenticação (`/login`):** Ecrã para acesso de utilizadores.   
