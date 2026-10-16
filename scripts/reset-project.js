@@ -6,12 +6,12 @@
  * You can remove the `reset-project` script from package.json and safely delete this file after running it.
  */
 
-const fs = require("fs");
+const fs = require("fs"); 
 const path = require("path");
 const readline = require("readline");
 
 const root = process.cwd();
-const oldDirs = ["src", "scripts"];
+const oldDirs = ["src", "scripts"]; 
 const exampleDir = "example";
 const newAppDir = "src/app";
 const exampleDirPath = path.join(root, exampleDir);
@@ -22,7 +22,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Text>Edit src/app/index.tsx to edit this screen.</Text>
-    </View>
+    </View> 
   );
 }
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
 const layoutContent = `import { Stack } from "expo-router";
 
-export default function RootLayout() {
+export default function RootLayout() { 
   return <Stack />;
 }
 `;
