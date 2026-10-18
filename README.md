@@ -10,7 +10,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 - Node.js   
    
 ## Estrutura do Projeto e Rotas    
-
+ 
 - **Página Inicial (`/`):** Apresentação e ponto de entrada do sistema.    
 - **Autenticação (`/login`):** Ecrã para acesso de utilizadores.   
 - **Registo (`/registro`):** Ecrã para criação de novas contas.
