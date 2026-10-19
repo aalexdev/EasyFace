@@ -5,6 +5,6 @@ export default function Layout() {
   return (
     <AuthProvider>
       <Slot /> 
-    </AuthProvider>
+    </AuthProvider> 
   );
 }
