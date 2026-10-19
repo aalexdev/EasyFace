@@ -4,7 +4,7 @@ import { AuthProvider } from '../context/authcontext';
 export default function Layout() {
   return (
     <AuthProvider>
-      <Slot />
+      <Slot /> 
     </AuthProvider>
   );
 }
