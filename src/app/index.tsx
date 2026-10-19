@@ -5,7 +5,7 @@ import { CircuitBackground } from '../components/circuitbackground';
 
 const logoImg = require('../images/logo.jpg');
 
-export default function Home() {
+export default function Home() { 
   const router = useRouter();
  
   return (
