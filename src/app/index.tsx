@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    zIndex: 2,
+    zIndex: 2, 
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 48,
