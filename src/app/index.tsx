@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     width: 135,
     height: 135,
     borderRadius: 67.5,
-    borderWidth: 2.5,
+    borderWidth: 2.5, 
     borderColor: '#00A8E8',
   },
   title: {
