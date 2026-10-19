@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router'; 
 import { CircuitBackground } from '../components/circuitbackground';
-
+ 
 const logoImg = require('../images/logo.jpg');
 
 export default function Home() { 
