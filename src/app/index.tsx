@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     letterSpacing: 4,
   },
-  badge: {
+  badge: { 
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'rgba(0, 168, 232, 0.25)',
+    borderColor: 'rgba(0, 168, 232, 0.25)', 
   },
   badgeDot: {
     width: 6,
