@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <CircuitBackground />
-
+ 
       <View style={styles.content}>
         <View style={styles.logoWrapper}>
           <View style={styles.outerRing} />
