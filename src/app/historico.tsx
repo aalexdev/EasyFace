@@ -5,7 +5,7 @@ import { CircuitBackground } from '../components/circuitbackground';
 import { useAuth } from '../context/authcontext'; 
 import { supabase } from '../lib/supabase';  
 
-interface AccessLog {
+interface AccessLog { 
   id: string;
   access_type: string;
   status: 'APROVADO' | 'RECUSADO';
