@@ -12,7 +12,7 @@ interface AccessLog {
   created_at: string;
 }
 
-export default function Historico() {
+export default function Historico() { 
   const router = useRouter();
   const { user } = useAuth();
   const [logs, setLogs] = useState<AccessLog[]>([]);
