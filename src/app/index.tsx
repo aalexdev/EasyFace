@@ -7,7 +7,7 @@ const logoImg = require('../images/logo.jpg');
  
 export default function Home() { 
   const router = useRouter();
- 
+  
   return (
     <View style={styles.container}>
       <CircuitBackground />
