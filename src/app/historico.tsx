@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Pressable, ScrollView, SafeAreaView, ActivityIndicator } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter } from 'expo-router'; 
 import { CircuitBackground } from '../components/circuitbackground';
 import { useAuth } from '../context/authcontext';
 import { supabase } from '../lib/supabase';
