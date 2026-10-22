@@ -10,7 +10,7 @@ export default function Home() {
     
   return (
     <View style={styles.container}>   
-      <CircuitBackground />
+      <CircuitBackground /> 
  
       <View style={styles.content}>
         <View style={styles.logoWrapper}> 
