@@ -13,7 +13,7 @@ export default function Home() {
       <CircuitBackground />
  
       <View style={styles.content}>
-        <View style={styles.logoWrapper}>
+        <View style={styles.logoWrapper}> 
           <View style={styles.outerRing} />
           <Image source={logoImg} style={styles.logo} />
         </View>
