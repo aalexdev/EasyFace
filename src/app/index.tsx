@@ -9,7 +9,7 @@ export default function Home() {
   const router = useRouter();
    
   return (
-    <View style={styles.container}>  
+    <View style={styles.container}>   
       <CircuitBackground />
  
       <View style={styles.content}>
