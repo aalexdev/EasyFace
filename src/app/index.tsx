@@ -1,5 +1,5 @@
 import React from 'react';  
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native';      
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';       
 import { useRouter } from 'expo-router';         
 import { CircuitBackground } from '../components/circuitbackground';         
    
