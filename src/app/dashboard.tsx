@@ -4,22 +4,24 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   useWindowDimensions,
   View,
 } from 'react-native';
-import { CircuitBackground } from '../components/circuitbackground';
+import { GradientBackground } from '../components/gradientbackground';
 
 export default function Dashboard() {
   const router = useRouter();
   const { width } = useWindowDimensions();
-  const isDesktop = width >= 768;
+  const isTablet = width >= 768;
 
+  // Perfil definido como 'fornecedor'
   const [profile] = useState({
     name: 'João da Silva',
     document: '123.456.789-00',
-    user_type: 'participante',
+    user_type: 'fornecedor',
   });
 
   const handleSignOut = () => {
@@ -38,14 +40,15 @@ export default function Dashboard() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CircuitBackground opacity={0.2} />
+      <StatusBar barStyle="light-content" backgroundColor="#050811" />
+      <GradientBackground />
 
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.mainWrapper, { maxWidth: isDesktop ? 1040 : '100%' }]}>
-          {/* Header Minimalista */}
+        <View style={[styles.mainWrapper, { maxWidth: isTablet ? 720 : '100%' }]}>
+          {/* HEADER / PERFIL */}
           <View style={styles.header}>
             <View style={styles.userInfo}>
               <View style={styles.avatarContainer}>
@@ -60,33 +63,27 @@ export default function Dashboard() {
                 <Text style={styles.userName} numberOfLines={1}>
                   {profile?.name}
                 </Text>
-                <View
-                  style={[
-                    styles.roleTag,
-                    isSupplier ? styles.supplierTag : styles.participantTag,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.roleTagText,
-                      isSupplier ? styles.supplierTagText : styles.participantTagText,
-                    ]}
-                  >
-                    {isSupplier ? 'FORNECEDOR CERTIFICADO' : 'PARTICIPANTE AUTORIZADO'}
+                <View style={[styles.roleTag, styles.supplierTag]}>
+                  <Text style={[styles.roleTagText, styles.supplierTagText]}>
+                    FORNECEDOR AUTORIZADO
                   </Text>
                 </View>
               </View>
             </View>
 
             <Pressable
-              style={({ pressed }) => [styles.logoutButton, pressed && styles.logoutButtonPressed]}
+              style={({ pressed }) => [
+                styles.logoutButton,
+                pressed && styles.logoutButtonPressed,
+              ]}
               onPress={handleSignOut}
+              hitSlop={10}
             >
-              <Text style={styles.logoutText}>ENCRERRAR SESSÃO</Text>
+              <Text style={styles.logoutText}>SAIR</Text>
             </Pressable>
           </View>
 
-          {/* Hero Card - Status Biométrico */}
+          {/* HERO CARD - STATUS BIOMÉTRICO */}
           <View style={styles.heroCard}>
             <View style={styles.heroHeader}>
               <View style={styles.heroTitleGroup}>
@@ -115,7 +112,7 @@ export default function Dashboard() {
             </View>
           </View>
 
-          {/* Métricas Rápidas */}
+          {/* MÉTRICAS RÁPIDAS */}
           <View style={styles.statsRow}>
             <View style={styles.statCard}>
               <Text style={styles.statNumber}>100%</Text>
@@ -133,13 +130,12 @@ export default function Dashboard() {
             </View>
           </View>
 
-          {/* Módulos de Ação Grid Responsivo */}
+          {/* MÓDULOS DE AÇÃO */}
           <Text style={styles.sectionTitle}>MÓDULOS DE AÇÃO</Text>
           <View style={styles.grid}>
             <Pressable
               style={({ pressed }) => [
                 styles.actionCard,
-                isDesktop && styles.actionCardDesktop,
                 pressed && styles.actionCardPressed,
               ]}
               onPress={() => router.push('/reconhecimento')}
@@ -157,7 +153,6 @@ export default function Dashboard() {
             <Pressable
               style={({ pressed }) => [
                 styles.actionCard,
-                isDesktop && styles.actionCardDesktop,
                 pressed && styles.actionCardPressed,
               ]}
               onPress={() => router.push('/historico')}
@@ -175,7 +170,6 @@ export default function Dashboard() {
             <Pressable
               style={({ pressed }) => [
                 styles.actionCard,
-                isDesktop && styles.actionCardDesktop,
                 pressed && styles.actionCardPressed,
               ]}
               onPress={() => router.push('/lista-acessos')}
@@ -191,7 +185,7 @@ export default function Dashboard() {
             </Pressable>
           </View>
 
-          {/* Banner Informativo */}
+          {/* BANNER INFORMATIVO */}
           <View style={styles.infoBox}>
             <Text style={styles.infoBoxTag}>SECURE</Text>
             <Text style={styles.infoBoxText}>
@@ -206,8 +200,14 @@ export default function Dashboard() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#050811' },
-  scrollContent: { padding: 20, paddingBottom: 40, alignItems: 'center' },
-  mainWrapper: { width: '100%', gap: 20 },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 32,
+    alignItems: 'center',
+  },
+  mainWrapper: { width: '100%', gap: 16 },
 
   /* Header */
   header: {
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 4,
   },
-  userInfo: { flexDirection: 'row', alignItems: 'center', gap: 14, flex: 1 },
+  userInfo: { flexDirection: 'row', alignItems: 'center', gap: 12, flex: 1 },
   avatarContainer: { position: 'relative' },
   avatar: {
     width: 44,
@@ -241,16 +241,17 @@ const styles = StyleSheet.create({
     borderColor: '#050811',
   },
   userTextContainer: { flex: 1, gap: 2 },
-  welcomeText: { fontSize: 9, fontWeight: '800', color: '#64748B', letterSpacing: 1.5 },
-  userName: { fontSize: 17, fontWeight: '700', color: '#FFFFFF', letterSpacing: 0.3 },
+  welcomeText: { fontSize: 8, fontWeight: '800', color: '#64748B', letterSpacing: 1.2 },
+  userName: { fontSize: 16, fontWeight: '700', color: '#FFFFFF', letterSpacing: 0.3 },
   roleTag: { alignSelf: 'flex-start', paddingVertical: 2, paddingHorizontal: 8, borderRadius: 4, borderWidth: 1, marginTop: 2 },
-  participantTag: { backgroundColor: 'rgba(0, 240, 255, 0.05)', borderColor: 'rgba(0, 240, 255, 0.2)' },
-  supplierTag: { backgroundColor: 'rgba(245, 158, 11, 0.05)', borderColor: 'rgba(245, 158, 11, 0.2)' },
+  supplierTag: { backgroundColor: 'rgba(0, 240, 255, 0.08)', borderColor: 'rgba(0, 240, 255, 0.3)' },
   roleTagText: { fontSize: 8, fontWeight: '800', letterSpacing: 0.8 },
-  participantTagText: { color: '#00F0FF' },
-  supplierTagText: { color: '#F59E0B' },
+  supplierTagText: { color: '#00F0FF' },
   logoutButton: {
-    paddingVertical: 8,
+    minHeight: 38,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 8,
     backgroundColor: 'rgba(239, 68, 68, 0.08)',
@@ -262,68 +263,67 @@ const styles = StyleSheet.create({
 
   /* Hero Card */
   heroCard: {
-    padding: 22,
+    padding: 18,
     borderRadius: 16,
-    backgroundColor: 'rgba(13, 20, 36, 0.6)',
+    backgroundColor: 'rgba(13, 20, 36, 0.75)',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.08)',
-    gap: 16,
+    gap: 14,
   },
-  heroHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
+  heroHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 },
   heroTitleGroup: { gap: 2 },
-  heroSubtitle: { fontSize: 9, fontWeight: '800', color: '#64748B', letterSpacing: 1.5 },
-  heroTitle: { fontSize: 16, fontWeight: '800', color: '#FFFFFF', letterSpacing: 1 },
+  heroSubtitle: { fontSize: 8, fontWeight: '800', color: '#64748B', letterSpacing: 1.2 },
+  heroTitle: { fontSize: 15, fontWeight: '800', color: '#FFFFFF', letterSpacing: 1 },
   statusPill: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
     backgroundColor: 'rgba(16, 185, 129, 0.08)',
     paddingVertical: 4,
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(16, 185, 129, 0.25)',
   },
   pulseDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: '#10B981' },
-  statusPillText: { fontSize: 9, fontWeight: '800', color: '#10B981', letterSpacing: 1 },
+  statusPillText: { fontSize: 8, fontWeight: '800', color: '#10B981', letterSpacing: 0.8 },
   divider: { height: 1, backgroundColor: 'rgba(255, 255, 255, 0.06)' },
-  heroDetails: { flexDirection: 'row', justifyContent: 'space-between', gap: 12 },
+  heroDetails: { flexDirection: 'row', justifyContent: 'space-between', gap: 10 },
   detailItem: { flex: 1, gap: 2 },
-  detailLabel: { fontSize: 8, fontWeight: '800', color: '#64748B', letterSpacing: 1 },
-  detailValue: { fontSize: 12, fontWeight: '700', color: '#E2E8F0' },
-  detailValueHighlight: { fontSize: 11, fontWeight: '800', color: '#00F0FF' },
+  detailLabel: { fontSize: 8, fontWeight: '800', color: '#64748B', letterSpacing: 0.8 },
+  detailValue: { fontSize: 11, fontWeight: '700', color: '#E2E8F0' },
+  detailValueHighlight: { fontSize: 10, fontWeight: '800', color: '#00F0FF' },
 
   /* Metrics */
-  statsRow: { flexDirection: 'row', gap: 12 },
+  statsRow: { flexDirection: 'row', gap: 10 },
   statCard: {
     flex: 1,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 6,
     borderRadius: 12,
-    backgroundColor: 'rgba(13, 20, 36, 0.4)',
+    backgroundColor: 'rgba(13, 20, 36, 0.5)',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.06)',
     alignItems: 'center',
-    gap: 4,
+    gap: 3,
   },
-  statNumber: { fontSize: 15, fontWeight: '800', color: '#FFFFFF', letterSpacing: 0.5 },
-  statLabel: { fontSize: 8, fontWeight: '800', color: '#64748B', letterSpacing: 0.8, textAlign: 'center' },
+  statNumber: { fontSize: 14, fontWeight: '800', color: '#FFFFFF', letterSpacing: 0.5 },
+  statLabel: { fontSize: 8, fontWeight: '800', color: '#64748B', letterSpacing: 0.6, textAlign: 'center' },
 
-  /* Actions */
-  sectionTitle: { fontSize: 10, fontWeight: '800', color: '#64748B', letterSpacing: 2, marginTop: 6 },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  /* Actions Grid */
+  sectionTitle: { fontSize: 9, fontWeight: '800', color: '#64748B', letterSpacing: 1.5, marginTop: 4 },
+  grid: { gap: 10 },
   actionCard: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
+    padding: 14,
     borderRadius: 14,
-    backgroundColor: 'rgba(13, 20, 36, 0.6)',
+    backgroundColor: 'rgba(13, 20, 36, 0.75)',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.08)',
-    gap: 14,
+    gap: 12,
   },
-  actionCardDesktop: { width: '32%', flexGrow: 1 },
   actionCardPressed: { backgroundColor: 'rgba(0, 240, 255, 0.05)', borderColor: 'rgba(0, 240, 255, 0.3)' },
   actionTag: {
     paddingHorizontal: 8,
@@ -333,23 +333,23 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.08)',
   },
-  actionTagText: { fontSize: 9, fontWeight: '800', color: '#00F0FF', letterSpacing: 1 },
+  actionTagText: { fontSize: 8, fontWeight: '800', color: '#00F0FF', letterSpacing: 1 },
   actionTextWrapper: { flex: 1, gap: 2 },
   actionTitle: { fontSize: 12, fontWeight: '800', color: '#FFFFFF', letterSpacing: 0.8 },
-  actionSub: { fontSize: 10, color: '#94A3B8' },
+  actionSub: { fontSize: 9, color: '#94A3B8' },
   actionArrow: { fontSize: 16, color: '#64748B' },
 
   /* Banner */
   infoBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    padding: 14,
+    gap: 10,
+    padding: 12,
     borderRadius: 12,
     backgroundColor: 'rgba(255, 255, 255, 0.02)',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.06)',
   },
-  infoBoxTag: { fontSize: 9, fontWeight: '800', color: '#64748B', letterSpacing: 1 },
-  infoBoxText: { flex: 1, fontSize: 10, color: '#94A3B8', lineHeight: 15 },
+  infoBoxTag: { fontSize: 8, fontWeight: '800', color: '#64748B', letterSpacing: 1 },
+  infoBoxText: { flex: 1, fontSize: 9, color: '#94A3B8', lineHeight: 14 },
 });

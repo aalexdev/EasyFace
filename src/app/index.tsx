@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { CircuitBackground } from '../components/circuitbackground';
 
 const logoImg = require('../images/logo.jpg');
@@ -8,29 +8,32 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#050811" />
       <CircuitBackground opacity={0.2} />
 
-      <View style={styles.content}>
-        <View style={styles.logoWrapper}>
-          <Image source={logoImg} style={styles.logo} />
+      <View style={styles.contentWrapper}>
+        <View style={styles.card}>
+          <View style={styles.logoWrapper}>
+            <Image source={logoImg} style={styles.logo} />
+          </View>
+
+          <Text style={styles.title}>EASYFACE</Text>
+
+          <View style={styles.badge}>
+            <View style={styles.badgeDot} />
+            <Text style={styles.badgeText}>SISTEMA BIOMÉTRICO ATIVO</Text>
+          </View>
+
+          <Pressable
+            style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
+            onPress={() => router.push('/login')}
+          >
+            <Text style={styles.buttonText}>LOGIN / REGISTO</Text>
+          </Pressable>
         </View>
-
-        <Text style={styles.title}>EASYFACE</Text>
-
-        <View style={styles.badge}>
-          <View style={styles.badgeDot} />
-          <Text style={styles.badgeText}>SISTEMA BIOMÉTRICO ATIVO</Text>
-        </View>
-
-        <Pressable
-          style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
-          onPress={() => router.push('/login')}
-        >
-          <Text style={styles.buttonText}>LOGIN / REGISTO</Text>
-        </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -38,32 +41,35 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#050811',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  content: {
+  contentWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  card: {
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 44,
-    paddingHorizontal: 32,
+    paddingVertical: 36,
+    paddingHorizontal: 24,
     borderRadius: 24,
-    backgroundColor: 'rgba(13, 20, 36, 0.65)',
+    backgroundColor: 'rgba(13, 20, 36, 0.75)',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.08)',
-    maxWidth: 380,
-    width: '88%',
   },
   logoWrapper: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
+    width: 90,
+    height: 90,
+    marginBottom: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo: {
-    width: 90,
-    height: 90,
-    borderRadius: 24,
+    width: 80,
+    height: 80,
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.15)',
   },
@@ -78,9 +84,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    marginBottom: 32,
+    marginBottom: 28,
     backgroundColor: 'rgba(16, 185, 129, 0.08)',
-    paddingVertical: 5,
+    paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 20,
     borderWidth: 1,
@@ -96,11 +102,12 @@ const styles = StyleSheet.create({
     fontSize: 9,
     fontWeight: '800',
     color: '#10B981',
-    letterSpacing: 1.5,
+    letterSpacing: 1.2,
   },
   button: {
     width: '100%',
-    paddingVertical: 14,
+    minHeight: 48,
+    justifyContent: 'center',
     backgroundColor: '#00F0FF',
     borderRadius: 10,
     alignItems: 'center',
