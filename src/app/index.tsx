@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { CircuitBackground } from '../components/circuitbackground';
 
-const logoImg = require('../images/logo.jpg');
+const logoImg = require('../images/logo.jpg'); 
 
 export default function Home() {
   const router = useRouter();
