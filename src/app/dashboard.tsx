@@ -9,7 +9,7 @@ import {
   Text, 
   useWindowDimensions,
   View,
-} from 'react-native';
+} from 'react-native'; 
 import { GradientBackground } from '../components/gradientbackground';
 
 export default function Dashboard() {
