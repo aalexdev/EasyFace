@@ -6,7 +6,7 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
+  Text, 
   useWindowDimensions,
   View,
 } from 'react-native';
