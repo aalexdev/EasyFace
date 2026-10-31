@@ -4,7 +4,7 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  StatusBar,
+  StatusBar, 
   StyleSheet,
   Text, 
   useWindowDimensions,
