@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
-import { CircuitBackground } from '../components/circuitbackground'; 
+import { CircuitBackground } from '../components/circuitbackground';  
                   
 const logoImg = require('../images/logo.jpg'); 
  
