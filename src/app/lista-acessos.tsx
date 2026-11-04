@@ -8,7 +8,7 @@ import {
   Text,
   TextInput,
   View,
-} from 'react-native';
+} from 'react-native'; 
 import { useRouter } from 'expo-router';
 import { GradientBackground } from '../components/gradientbackground';
 
