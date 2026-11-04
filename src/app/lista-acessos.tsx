@@ -16,7 +16,7 @@ interface AccessUser {
   id: string;
   name: string; 
   document: string;
-  role: 'PARTICIPANTE' | 'FORNECEDOR';
+  role: 'PARTICIPANTE' | 'FORNECEDOR'; 
   status: 'AUTORIZADO' | 'PENDENTE' | 'BLOQUEADO';
   lastAccess: string; 
 } 
