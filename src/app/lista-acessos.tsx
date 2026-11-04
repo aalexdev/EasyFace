@@ -18,7 +18,7 @@ interface AccessUser {
   document: string;
   role: 'PARTICIPANTE' | 'FORNECEDOR';
   status: 'AUTORIZADO' | 'PENDENTE' | 'BLOQUEADO';
-  lastAccess: string;
+  lastAccess: string; 
 } 
 
 const INITIAL_USERS: AccessUser[] = [
