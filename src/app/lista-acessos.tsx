@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   FlatList,
   Pressable, 
-  SafeAreaView,
+  SafeAreaView, 
   StatusBar, 
   StyleSheet,
   Text, 
