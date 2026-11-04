@@ -14,7 +14,7 @@ import { GradientBackground } from '../components/gradientbackground';
 
 interface AccessUser {
   id: string;
-  name: string;
+  name: string; 
   document: string;
   role: 'PARTICIPANTE' | 'FORNECEDOR';
   status: 'AUTORIZADO' | 'PENDENTE' | 'BLOQUEADO';
