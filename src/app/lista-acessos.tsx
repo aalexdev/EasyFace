@@ -19,7 +19,7 @@ interface AccessUser {
   role: 'PARTICIPANTE' | 'FORNECEDOR';
   status: 'AUTORIZADO' | 'PENDENTE' | 'BLOQUEADO';
   lastAccess: string;
-}
+} 
 
 const INITIAL_USERS: AccessUser[] = [
   {
