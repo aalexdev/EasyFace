@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import {
   FlatList,
-  Pressable, 
+  Pressable,  
   SafeAreaView,
   StatusBar,
   StyleSheet,
