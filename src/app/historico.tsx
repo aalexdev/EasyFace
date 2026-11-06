@@ -7,7 +7,7 @@ import {
   StatusBar,  
   StyleSheet,  
   Text, 
-  View,
+  View,  
 } from 'react-native';
 import { GradientBackground } from '../components/gradientbackground';
 
