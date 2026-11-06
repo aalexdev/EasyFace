@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet, 
-  Text,
+  Text, 
   View,
 } from 'react-native';
 import { GradientBackground } from '../components/gradientbackground';
