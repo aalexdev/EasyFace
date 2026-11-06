@@ -8,7 +8,7 @@ import {
   StyleSheet,   
   Text, 
   View,  
-} from 'react-native';
+} from 'react-native'; 
 import { GradientBackground } from '../components/gradientbackground';
 
 interface AccessLog {
