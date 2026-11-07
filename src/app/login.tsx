@@ -11,7 +11,7 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar, 
-  StyleSheet, 
+  StyleSheet,  
   Text,
   TextInput,
   TouchableWithoutFeedback,
