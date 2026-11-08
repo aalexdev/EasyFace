@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
-  ActivityIndicator,  
+  ActivityIndicator,   
   Alert,  
   Image,
   Keyboard,         
@@ -13,7 +13,7 @@ import {
   StatusBar, 
   StyleSheet,  
   Text, 
-  TextInput,
+  TextInput,  
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
