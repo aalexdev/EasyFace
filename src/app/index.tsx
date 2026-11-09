@@ -4,10 +4,10 @@ import { CircuitBackground } from '../components/circuitbackground';
                       
 const logoImg = require('../images/logo.jpg'); 
  
-export default function Home() { 
+export default function Home() {  
   const router = useRouter(); 
       
-  return (   
+  return (    
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#050811" /> 
       <CircuitBackground opacity={0.2} /> 
