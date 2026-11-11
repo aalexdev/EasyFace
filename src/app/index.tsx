@@ -16,7 +16,7 @@ export default function Home() {
         <View style={styles.card}> 
           <View style={styles.logoWrapper}>  
             <Image source={logoImg} style={styles.logo} />
-          </View>
+          </View> 
 
           <Text style={styles.title}>EASYFACE</Text>
 
