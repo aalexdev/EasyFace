@@ -12,7 +12,7 @@ import {
 import { useRouter } from 'expo-router';
 import { GradientBackground } from '../components/gradientbackground';
 
-interface AccessUser {
+interface AccessUser { 
   id: string;
   name: string; 
   document: string;
