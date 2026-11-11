@@ -12,7 +12,7 @@ export default function Home() {
       <StatusBar barStyle="light-content" backgroundColor="#050811" />   
       <CircuitBackground opacity={0.2} /> 
   
-      <View style={styles.contentWrapper}> 
+      <View style={styles.contentWrapper}>  
         <View style={styles.card}> 
           <View style={styles.logoWrapper}>  
             <Image source={logoImg} style={styles.logo} />
