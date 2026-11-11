@@ -6,7 +6,7 @@ import {
   StatusBar, 
   StyleSheet,
   Text, 
-  TextInput,  
+  TextInput,   
   View, 
 } from 'react-native'; 
 import { useRouter } from 'expo-router';
