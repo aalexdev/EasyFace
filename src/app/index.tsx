@@ -8,7 +8,7 @@ export default function Home() {
   const router = useRouter(); 
         
   return (     
-    <SafeAreaView style={styles.container}> 
+    <SafeAreaView style={styles.container}>  
       <StatusBar barStyle="light-content" backgroundColor="#050811" />   
       <CircuitBackground opacity={0.2} /> 
   
