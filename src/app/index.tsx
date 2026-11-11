@@ -9,7 +9,7 @@ export default function Home() {
         
   return (     
     <SafeAreaView style={styles.container}>  
-      <StatusBar barStyle="light-content" backgroundColor="#050811" />   
+      <StatusBar barStyle="light-content" backgroundColor="#050811" />    
       <CircuitBackground opacity={0.2} /> 
   
       <View style={styles.contentWrapper}>   
