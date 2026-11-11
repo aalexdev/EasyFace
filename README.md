@@ -8,7 +8,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 - Expo / Expo Router               
 - TypeScript                 
 - Node.js           
- 
+  
     
 ## Estrutura do Projeto e Rotas     
    
@@ -22,7 +22,7 @@ Aplicação desenvolvida com React Native e Expo, focada em navegação estrutur
 ### Pré-requisitos  
 
 - Node.js instalado no sistema. 
-- Aplicação Expo Go instalada no dispositivo móvel (opcional para testes em dispositivo físico).   
+- Aplicação Expo Go instalada no dispositivo móvel (opcional para testes em dispositivo físico).    
  
 ### Passos de Instalação  
 
