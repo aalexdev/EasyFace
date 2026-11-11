@@ -3,7 +3,7 @@ import {
   FlatList,
   Pressable,  
   SafeAreaView,  
-  StatusBar,   
+  StatusBar,    
   StyleSheet, 
   Text, 
   TextInput,    
