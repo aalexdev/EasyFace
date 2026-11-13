@@ -9,7 +9,7 @@ import {
   Platform,      
   Pressable,           
   SafeAreaView,
-  ScrollView,    
+  ScrollView,     
   StatusBar,   
   StyleSheet,    
   Text,  
