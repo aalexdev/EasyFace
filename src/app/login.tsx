@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,  
   Platform,      
   Pressable,           
-  SafeAreaView, 
+  SafeAreaView,  
   ScrollView,     
   StatusBar,   
   StyleSheet,    
