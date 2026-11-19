@@ -15,7 +15,7 @@ import {
   Text,  
   TextInput,  
   TouchableWithoutFeedback,
-  View,
+  View, 
 } from 'react-native'; 
 import { CircuitBackground } from '../components/circuitbackground';
 
