@@ -23,7 +23,7 @@ const logoImg = require('../images/logo.jpg');
 
 export default function Login() {
   const router = useRouter();
-
+ 
   const [userType, setUserType] = useState<'participante' | 'fornecedor'>('participante');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
