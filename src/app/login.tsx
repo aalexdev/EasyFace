@@ -16,7 +16,7 @@ import {
   TextInput,   
   TouchableWithoutFeedback,
   View, 
-} from 'react-native'; 
+} from 'react-native';  
 import { CircuitBackground } from '../components/circuitbackground';
 
 const logoImg = require('../images/logo.jpg');
