@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import {
   Pressable,
-  SafeAreaView,
+  SafeAreaView, 
   ScrollView,
   StatusBar,
   StyleSheet,
