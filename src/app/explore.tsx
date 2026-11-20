@@ -4,7 +4,7 @@ import {
   SafeAreaView, 
   ScrollView,
   StatusBar,
-  StyleSheet,
+  StyleSheet, 
   Text,
   useWindowDimensions,
   View,
