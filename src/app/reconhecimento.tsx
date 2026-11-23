@@ -5,7 +5,7 @@ import {
   Easing, 
   Pressable,     
   SafeAreaView,  
-  ScrollView,
+  ScrollView, 
   StatusBar,
   StyleSheet,
   Text,
