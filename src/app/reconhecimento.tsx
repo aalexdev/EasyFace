@@ -15,7 +15,7 @@ import { GradientBackground } from '../components/gradientbackground';
 
 export default function Reconhecimento() {
   const router = useRouter(); 
-  const [scanning, setScanning] = useState(false);
+  const [scanning, setScanning] =  useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Navegação Segura ao Clicar em Voltar
