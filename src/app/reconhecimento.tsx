@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { 
-  Animated, 
+  Animated,  
   Easing,
   Pressable,
   SafeAreaView,
