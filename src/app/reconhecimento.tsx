@@ -7,7 +7,7 @@ import {
   SafeAreaView,  
   ScrollView, 
   StatusBar, 
-  StyleSheet,
+  StyleSheet, 
   Text,
   View,
 } from 'react-native';
