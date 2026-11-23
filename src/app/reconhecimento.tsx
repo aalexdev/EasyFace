@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { 
   Animated,  
   Easing, 
-  Pressable, 
+  Pressable,  
   SafeAreaView, 
   ScrollView,
   StatusBar,
