@@ -21,7 +21,7 @@ export default function Reconhecimento() {
   // Navegação Segura ao Clicar em Voltar
   const handleBack = () => {
     if (router.canGoBack()) {
-      router.back();
+      router.back(); 
     } else {
       router.replace('/dashboard');
     }
