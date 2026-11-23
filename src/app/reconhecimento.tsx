@@ -11,7 +11,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { GradientBackground } from '../components/gradientbackground';  
+import { GradientBackground } from '../components/gradientbackground';   
 
 export default function Reconhecimento() {
   const router = useRouter(); 
