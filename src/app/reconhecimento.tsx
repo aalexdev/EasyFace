@@ -4,7 +4,7 @@ import {
   Animated,  
   Easing, 
   Pressable,
-  SafeAreaView,
+  SafeAreaView, 
   ScrollView,
   StatusBar,
   StyleSheet,
