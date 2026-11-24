@@ -7,7 +7,7 @@ import {
   StyleSheet,        
   Text,    
   useWindowDimensions,  
-  View,  
+  View,   
 } from 'react-native';
 import { GradientBackground } from '../components/gradientbackground'; 
 
