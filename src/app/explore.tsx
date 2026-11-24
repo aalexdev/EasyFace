@@ -6,7 +6,7 @@ import {
   StatusBar,        
   StyleSheet,      
   Text,   
-  useWindowDimensions,
+  useWindowDimensions, 
   View, 
 } from 'react-native';
 import { GradientBackground } from '../components/gradientbackground'; 
