@@ -3,11 +3,11 @@ import {
   Pressable,
   SafeAreaView, 
   ScrollView, 
-  StatusBar,        
-  StyleSheet,       
-  Text,   
-  useWindowDimensions, 
-  View, 
+  StatusBar,         
+  StyleSheet,        
+  Text,    
+  useWindowDimensions,  
+  View,  
 } from 'react-native';
 import { GradientBackground } from '../components/gradientbackground'; 
 
