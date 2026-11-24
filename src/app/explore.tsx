@@ -9,7 +9,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { GradientBackground } from '../components/gradientbackground';
+import { GradientBackground } from '../components/gradientbackground'; 
 
 export default function ExploreScreen() {
   const router = useRouter();
